@@ -35,6 +35,11 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+// 暂时玩不明白的token，而且还用的是外部的token，更新时换一下value的值就好
+Vue.prototype.$globalToken = {
+  value: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjE2OCwiY3JlYXRlZCI6MTY4NDI1NjU1MDIwNiwiZXhwIjoxNjg0ODYxMzUwfQ.iyVVS8AHGuMSwJ391iVpGuNiAw8XqrwpK1lbLM1POAk9uycEo8JfC6PkjKzb3eRlogV69REiE5vbPUP4sMED1A'
+}
+
 new Vue({
   el: '#app',
   router,

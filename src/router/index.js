@@ -54,6 +54,63 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
+  {
+    path: '/workbench',
+    component: Layout,
+    redirect: '/workbench/customer-check',
+    name: 'Workbench',
+    meta: {
+      title: '审核中心',
+      icon: 'el-icon-s-opportunity'
+    },
+    children: [
+      {
+        path: 'customer-check',
+        component: () => import('@/views/workbench/customer-check'),
+        name: 'CustomerCheck',
+        meta: {
+          title: '客户审核',
+          icon: 'el-icon-s-custom'
+        }
+      },
+      {
+        path: 'quoted-price-check',
+        component: () => import('@/views/workbench/quoted-price-check'),
+        name: 'QuotedPriceCheck',
+        meta: {
+          title: '报价审核',
+          icon: 'el-icon-s-cooperation'
+        }
+      },
+      {
+        path: 'purchase-order-check',
+        component: () => import('@/views/workbench/purchase-order-check'),
+        name: 'PurchaseOrderCheck',
+        meta: {
+          title: '备货采购审核',
+          icon: 'el-icon-truck'
+        }
+      },
+      {
+        path: 'centralized-order-check',
+        component: () => import('@/views/workbench/centralized-order-check'),
+        name: 'CentralizedOrderCheck',
+        meta: {
+          title: '集采订单审核',
+          icon: 'el-icon-s-data'
+        }
+      },
+      {
+        path: 'supplier-pay-check',
+        component: () => import('@/views/workbench/supplier-pay-check'),
+        name: 'SupplierPayCheck',
+        meta: {
+          title: '供应商充值',
+          icon: 'el-icon-s-finance'
+        }
+      }
+    ]
+  },
 
   {
     path: '/example',
