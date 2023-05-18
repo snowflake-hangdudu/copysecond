@@ -138,6 +138,256 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/purchase',
+    component: Layout,
+    redirect: '/purchase/alloc', // 默认子路由
+    name: 'Purchase',
+    meta: { title: '采购', icon: 'el-icon-sold-out' },
+    children: [
+      {
+        path: 'alloc',
+        name: 'AllocOrder',
+        component: () => import('@/views/purchase/alloc'),
+        meta: { title: '待分配订单', icon: 'el-icon-receiving' }
+      },
+      {
+        path: 'alloc-no-stock',
+        name: 'AllocNoStockOrder',
+        component: () => import('@/views/purchase/alloc-no-stock'),
+        meta: { title: '异常订单', icon: 'el-icon-warning' }
+      },
+      {
+        path: 'alloc-done',
+        name: 'AllocDoneOrder',
+        component: () => import('@/views/purchase/alloc-done'),
+        meta: { title: '已分配订单', icon: 'el-icon-s-order' }
+      },
+      {
+        path: 'purchase-manage',
+        name: 'PurchaseManage',
+        component: () => import('@/views/purchase/purchase-manage'),
+        meta: { title: '备货采购', icon: 'el-icon-goods' }
+      },
+      {
+        path: 'private-warehouse',
+        name: 'PrivateWarehouse',
+        component: () => import('@/views/purchase/private-warehouse'),
+        meta: { title: '自营仓', icon: 'el-icon-office-building' }
+      },
+      {
+        path: 'outside-warehouse',
+        name: 'OutsideWarehouse',
+        component: () => import('@/views/purchase/outside-warehouse'),
+        meta: { title: '外仓', icon: 'el-icon-box' }
+      },
+      {
+        path: 'supplier',
+        name: 'Supplier',
+        component: () => import('@/views/purchase/supplier'),
+        meta: { title: '供应商管理', icon: 'el-icon-user' }
+      }
+    ]
+  },
+  {
+    path: '/after-sales',
+    component: Layout,
+    redirect: '/after-sales/after-sales-order',
+    name: 'AfterSales',
+    meta: {
+      title: '售后',
+      icon: 'el-icon-s-cooperation'
+    },
+    children: [
+      {
+        path: 'after-sales-order',
+        component: () => import('@/views/after-sales/after-sales-order'),
+        name: 'AfterSalesOrder',
+        meta: {
+          title: '售后订单'
+        }
+      },
+      {
+        path: 'abnormal',
+        component: () => import('@/views/after-sales/abnormal'),
+        name: 'Abnormal',
+        meta: {
+          title: '物流异常订单'
+        }
+      }
+    ]
+  },
+
+  {
+    path: '/finance',
+    component: Layout,
+    redirect: '/finance/customer-recharge',
+    name: 'Finance',
+    meta: {
+      title: '财务管理',
+      icon: 'el-icon-money'
+    },
+    children: [
+      {
+        path: 'customer-recharge',
+        component: () => import('@/views/finance/customer-recharge'),
+        name: 'CustomerRecharge',
+        meta: {
+          title: '客户充值',
+          icon: 'el-icon-s-ticket'
+        }
+      },
+      {
+        path: 'customer-invoices',
+        component: () => import('@/views/finance/customer-invoices'),
+        name: 'CustomerInvoices',
+        meta: {
+          title: '客户开票',
+          icon: 'el-icon-s-ticket'
+        }
+      },
+      {
+        path: 'pay-manage',
+        component: () => import('@/views/finance/pay-manage'),
+        name: 'PayManage',
+        meta: {
+          title: '采购付款',
+          icon: 'el-icon-s-order'
+        }
+      },
+      {
+        path: 'supplier-pay-manage',
+        component: () => import('@/views/finance/supplier-pay-manage'),
+        name: 'SupplierPayManage',
+        meta: {
+          title: '供应商充值',
+          icon: 'el-icon-s-finance'
+        }
+      },
+      {
+        path: 'account-manage',
+        component: () => import('@/views/finance/account-manage'),
+        name: 'AccountManage',
+        meta: {
+          title: '账户管理',
+          icon: 'el-icon-user'
+        }
+      }
+    ]
+  },
+  {
+    path: '/customer',
+    component: Layout,
+    redirect: '/customer/customer-manage',
+    name: 'Customer',
+    meta: {
+      title: '客户管理',
+      icon: 'el-icon-user'
+    },
+    children: [
+      {
+        path: 'customer-manage',
+        component: () => import('@/views/customer/customer-manage'),
+        name: 'CustomerManage',
+        meta: { title: '客户充值', icon: 'el-icon-money' }
+      },
+      {
+        path: 'customer-quote',
+        component: () => import('@/views/customer/customer-quote'),
+        name: 'CustomerQuote',
+        meta: { title: '客户报价', icon: 'el-icon-price-tag' }
+      }
+    ]
+  },
+
+  {
+    path: '/goods',
+    component: Layout,
+    redirect: '/goods/goods-manage',
+    name: 'Goods',
+    meta: { title: '商品管理', icon: 'shopping' },
+    children: [
+      {
+        path: 'goods-manage',
+        component: () => import('@/views/goods/goods-manage'),
+        name: 'GoodsManage',
+        meta: { title: '基础商品', icon: 'clipboard' }
+      },
+      {
+        path: 'combined-goods-manage',
+        component: () => import('@/views/goods/combined-goods-manage'),
+        name: 'CombinedGoodsManage',
+        meta: { title: '组合商品', icon: 'tree' }
+      },
+      {
+        path: 'goods-stock-apply',
+        component: () => import('@/views/goods/goods-stock-apply'),
+        name: 'GoodsStockApply',
+        meta: { title: '备货记录', icon: 'time' }
+      }
+    ]
+  },
+
+  {
+    path: '/sys',
+    component: Layout,
+    redirect: '/sys/department-manage',
+    name: 'Sys',
+    meta: { title: '系统设置', icon: 'el-icon-setting' },
+    children: [
+      {
+        path: 'department-manage',
+        component: () => import('@/views/sys/department-manage'),
+        name: 'DepartmentManage',
+        meta: { title: '部门管理', icon: 'el-icon-office-building' }
+      },
+      {
+        path: 'sys-user-manage',
+        component: () => import('@/views/sys/sys-user-manage'),
+        name: 'SysUserManage',
+        meta: { title: '账号管理', icon: 'el-icon-user' }
+      },
+      {
+        path: 'sys-roles',
+        component: () => import('@/views/sys/sys-roles'),
+        name: 'SysRoles',
+        meta: { title: '角色权限', icon: 'el-icon-lock' }
+      },
+      {
+        path: 'edit-info',
+        component: () => import('@/views/sys/edit-info'),
+        name: 'EditInfo',
+        meta: { title: '个人信息', icon: 'el-icon-user-solid' }
+      },
+      {
+        path: 'export-file',
+        component: () => import('@/views/sys/export-file'),
+        name: 'ExportFile',
+        meta: { title: '数据下载', icon: 'el-icon-download' }
+      },
+      {
+        path: 'sys-log',
+        component: () => import('@/views/sys/sys-log'),
+        name: 'SysLog',
+        meta: { title: '系统日志', icon: 'el-icon-notebook-2' }
+      }
+    ]
+  },
+  {
+    path: '/debug',
+    component: Layout,
+    redirect: '/debug/unknown',
+    name: 'Debug',
+    meta: { title: '调试功能', icon: 'bug' },
+    children: [
+      {
+        path: 'unknown',
+        component: () => import('@/views/debug/unknown'),
+        name: 'Unknown',
+        meta: { title: '暂时不知道干嘛', icon: 'link' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
