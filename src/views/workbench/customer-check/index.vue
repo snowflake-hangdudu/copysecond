@@ -1,18 +1,18 @@
 <template>
   <div class="container1">
-    <!-- <el-input v-model="serachName" placeholder="请输入客户名称">
+    <el-input v-model="searchInfo.searchName" placeholder="请输入客户名称">
       <template slot="prepend">客户名称</template>
-    </el-input> -->
-    <!-- 所属销售:
-    <el-select v-model="value" placeholder="请选择">
+    </el-input>
+    所属销售:
+    <el-select v-model="searchInfo.filterSale" placeholder="全部" clearable>
       <el-option
-        v-for="item in options"
+        v-for="item in saleUserList"
         :key="item.value"
         :label="item.label"
         :value="item.value"
       />
     </el-select>
-    审核状态:
+    <!-- 审核状态:
     <el-select v-model="value" placeholder="请选择">
       <el-option
         v-for="item in options"
@@ -22,7 +22,7 @@
       />
     </el-select> -->
     <el-table
-      :data="tableData"
+      :data="filterCustomerList"
       style="width: 100%"
     >
       <el-table-column
@@ -101,11 +101,11 @@
     </el-table>
     <el-pagination
       background
-      layout="total, sizes, prev, pager, next"
-      :page-sizes="[5, 20, 30, 50]"
-      :current-page.sync="currentPage"
-      :page-size="pageSize"
-      :total="totalCount"
+      layout="total, sizes, prev, pager, next, jumper"
+      :page-sizes="[5, 10, 20, 50]"
+      :current-page.sync="pagination.currentPage"
+      :page-size="pagination.pageSize"
+      :total="pagination.total"
       @size-change="handleSizeChange"
       @current-change="handlePageChange"
     />
@@ -115,19 +115,48 @@
 
 <script>
 import axios from 'axios'
+
 export default {
   name: 'CustomerCheck',
   data() {
     return {
-      serachName: '',
-      pageNum: 1,
-      pageSize: 5,
+      // 获取的列表数组
       tableData: [],
-      currentPage: 1,
-      totalCount: 0
+      // 分页配置
+      pagination: {
+        pageSize: 5,
+        currentPage: 1,
+        total: 0
+      },
+      searchInfo: {
+        searchName: '',
+        filterSale: ''
+      }
     }
   },
-  async mounted() {
+  computed: {
+    // 搜索客户名称后的列表
+    filterCustomerList() {
+      const keyword = this.searchInfo.searchName.trim()
+      if (!keyword) {
+        return this.tableData
+      } else {
+        return this.tableData.filter(customer => {
+          return customer.customerName.indexOf(keyword) !== -1
+        })
+      }
+    },
+    filterSaleList() {
+
+    },
+    // 所属销售筛选框全体销售
+    saleUserList() {
+      const users = new Set(this.tableData.map(row => row.saleUserName))
+      return Array.from(users).map(user => ({ label: user, value: user }))
+    }
+
+  },
+  mounted() {
     this.getData()
   },
   methods: {
@@ -135,17 +164,28 @@ export default {
       try {
         const res = await axios.get('/api/admin/review/customer/list', {
           params: {
-            pageNum: 1,
-            pageSize: 5
+            pageNum: this.pagination.currentPage,
+            pageSize: this.pagination.pageSize
           },
           headers: {
             Authorization: this.$globalToken.value
           }
         })
         this.tableData = res.data.data.rows
+        this.pagination.total = res.data.data.count
       } catch (error) {
         console.error(error)
       }
+    },
+    // 改变页面粒度调用的方法
+    handleSizeChange(val) {
+      this.pagination.pageSize = val
+      this.getData()
+    },
+    // 改变页码数调用的方法
+    handlePageChange(val) {
+      this.pagination.currentPage = val
+      this.getData()
     }
   }
 
