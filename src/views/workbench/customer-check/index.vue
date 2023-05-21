@@ -12,17 +12,17 @@
         :value="item.value"
       />
     </el-select>
-    <!-- 审核状态:
+    审核状态:
     <el-select v-model="value" placeholder="请选择">
       <el-option
-        v-for="item in options"
+        v-for="item in stateList"
         :key="item.value"
         :label="item.label"
         :value="item.value"
       />
-    </el-select> -->
+    </el-select>
     <el-table
-      :data="filterCustomerList"
+      :data="tableData"
       style="width: 100%"
     >
       <el-table-column
@@ -135,24 +135,14 @@ export default {
     }
   },
   computed: {
-    // 搜索客户名称后的列表
-    filterCustomerList() {
-      const keyword = this.searchInfo.searchName.trim()
-      if (!keyword) {
-        return this.tableData
-      } else {
-        return this.tableData.filter(customer => {
-          return customer.customerName.indexOf(keyword) !== -1
-        })
-      }
-    },
-    filterSaleList() {
-
-    },
     // 所属销售筛选框全体销售
-    saleUserList() {
-      const users = new Set(this.tableData.map(row => row.saleUserName))
-      return Array.from(users).map(user => ({ label: user, value: user }))
+    // saleUserList() {
+    //   const users = new Set(this.tableData.map(row => row.saleUserName))
+    //   return Array.from(users).map(user => ({ label: user, value: user }))
+    },
+    //所属审核状态框全部审核状态
+    stateList(){
+        
     }
 
   },
@@ -177,6 +167,23 @@ export default {
         console.error(error)
       }
     },
+  async getAccount(){
+      try {
+        const res = await axios.get('/api/admin/systemUser/list', {
+          params: {
+            pageNum: 1,
+            pageSize: 0,
+            isLite:true
+          },
+          headers: {
+            Authorization: this.$globalToken.value
+          }
+        })
+        this.pagination.total = res.data.data.count
+      } catch (error) {
+        console.error(error)
+      }
+    }
     // 改变页面粒度调用的方法
     handleSizeChange(val) {
       this.pagination.pageSize = val
