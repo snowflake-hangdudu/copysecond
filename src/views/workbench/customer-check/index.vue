@@ -1,22 +1,22 @@
 <template>
   <div class="container1">
-    <el-input v-model="searchInfo.searchName" placeholder="请输入客户名称">
+    <el-input v-model="searchInfo.searchName" placeholder="请输入客户名称" @input="getData">
       <template slot="prepend">客户名称</template>
     </el-input>
     所属销售:
-    <el-select v-model="searchInfo.filterSale" placeholder="全部" clearable>
+    <el-select v-model="searchInfo.saleUserId" placeholder="全部" clearable @input="getData">
       <el-option
         v-for="item in saleUserList"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
+        :key="item.userName"
+        :label="item.userName"
+        :value="item.id"
       />
     </el-select>
     审核状态:
-    <el-select v-model="value" placeholder="请选择">
+    <el-select v-model="searchInfo.searchState" placeholder="全部" clearable @input="getData">
       <el-option
         v-for="item in stateList"
-        :key="item.value"
+        :key="item.index"
         :label="item.label"
         :value="item.value"
       />
@@ -130,32 +130,40 @@ export default {
       },
       searchInfo: {
         searchName: '',
-        filterSale: ''
-      }
+        saleUserId: '',
+        searchState: ''
+
+      },
+      saleUserList: [],
+      stateList: [
+        { label: '审核中', value: '1' },
+        { label: '已通过', value: '2' },
+        { label: '已拒绝', value: '3' }
+      ]
     }
   },
   computed: {
-    // 所属销售筛选框全体销售
-    // saleUserList() {
-    //   const users = new Set(this.tableData.map(row => row.saleUserName))
-    //   return Array.from(users).map(user => ({ label: user, value: user }))
-    // },
-    //所属审核状态框全部审核状态
-    stateList(){
-        
-    }
 
   },
   mounted() {
     this.getData()
+    this.getData2()
   },
   methods: {
+    refresh() {
+      this.pagination.currentPage = 1
+      this.pagination.pageSize = 5
+      this.getData()
+    },
     async getData() {
       try {
         const res = await axios.get('/api/admin/review/customer/list', {
           params: {
             pageNum: this.pagination.currentPage,
-            pageSize: this.pagination.pageSize
+            pageSize: this.pagination.pageSize,
+            customerName: this.searchInfo.searchName,
+            saleUserId: this.searchInfo.saleUserId,
+            state: this.searchInfo.searchState
           },
           headers: {
             Authorization: this.$globalToken.value
@@ -167,23 +175,24 @@ export default {
         console.error(error)
       }
     },
-  async getAccount(){
+    async getData2() {
       try {
-        const res = await axios.get('/api/admin/systemUser/list', {
+        const res2 = await axios.get('/api/admin/systemUser/list', {
           params: {
             pageNum: 1,
             pageSize: 0,
-            isLite:true
+            isLite: true
           },
           headers: {
             Authorization: this.$globalToken.value
           }
         })
-        this.pagination.total = res.data.data.count
+        this.saleUserList = (res2.data.data.rows)
+        console.log(this.saleUserList)
       } catch (error) {
         console.error(error)
       }
-    }
+    },
     // 改变页面粒度调用的方法
     handleSizeChange(val) {
       this.pagination.pageSize = val
