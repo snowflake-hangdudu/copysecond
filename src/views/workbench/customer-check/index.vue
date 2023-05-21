@@ -139,7 +139,7 @@ export default {
     // saleUserList() {
     //   const users = new Set(this.tableData.map(row => row.saleUserName))
     //   return Array.from(users).map(user => ({ label: user, value: user }))
-    },
+    // },
     //所属审核状态框全部审核状态
     stateList(){
         
