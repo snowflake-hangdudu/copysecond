@@ -24,17 +24,18 @@
         :value="item.value"
       />
     </el-select>
-    <!-- // 还没想到怎么筛选 -->
-    <!-- 创建时间：<el-date-picker
+
+    创建时间：<el-date-picker
       v-model="time"
       type="daterange"
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       clearable
-      @input="getData"
-      @clear="handleClear"
-    /> -->
+      value-format="timestamp"
+      :default-time="['00:00:00', '23:59:59']"
+      @change="getData"
+    />
     <el-table
       :data="tableData"
       style="width: 100%"
@@ -106,8 +107,8 @@ export default {
             userId: this.searchInfo.searchUserName,
             state: this.searchInfo.searchState,
             goodsName: this.searchInfo.searchGoodsName,
-            startTime: '',
-            endTime: ' '
+            startTime: this.time ? this.time[0] : '',
+            endTime: this.time ? this.time[1] : ''
           },
           headers: {
             Authorization: this.$globalToken.value
@@ -137,11 +138,6 @@ export default {
         console.error(error)
       }
     },
-    handleClear() {
-      this.time = []
-      this.getData()
-    },
-
     // 改变页面粒度调用的方法
     handleSizeChange(val) {
       this.pagination.pageSize = val
