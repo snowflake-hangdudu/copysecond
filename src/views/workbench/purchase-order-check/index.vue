@@ -20,7 +20,8 @@
       :default-time="['00:00:00', '23:59:59']"
       @change="getData"
     />
-    <el-table :data="tableData" header-align="center" align="center">
+
+    <el-table :data="tableData" style="width: 100%">
       <el-table-column label="ID" prop="id" align="center" width="100" />
       <el-table-column label="发起人" prop="purchaseUserName" align="center" width="90" />
       <el-table-column label="商品名称" prop="goodsName" align="center" width="120" />
