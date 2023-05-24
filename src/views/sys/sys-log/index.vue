@@ -1,5 +1,7 @@
 <template>
-  <div />
+  <div>
+    <h1>hangdudu</h1>
+  </div>
 </template>
 
 <script>

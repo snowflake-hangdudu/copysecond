@@ -128,13 +128,13 @@ export const constantRoutes = [
         path: 'centralized-order',
         name: 'CentralizedOrder',
         component: () => import('@/views/seller/centralized-order'),
-        meta: { title: '集采订单', icon: 'shopping' }
+        meta: { title: '集采订单', icon: 'el-icon-document' }
       },
       {
         path: 'batch',
         name: 'Batch',
         component: () => import('@/views/seller/batch'),
-        meta: { title: '批次管理', icon: 'component' }
+        meta: { title: '批次管理', icon: 'el-icon-s-management' }
       }
     ]
   },
@@ -204,7 +204,7 @@ export const constantRoutes = [
         component: () => import('@/views/after-sales/after-sales-order'),
         name: 'AfterSalesOrder',
         meta: {
-          title: '售后订单'
+          title: '售后订单', icon: 'el-icon-service'
         }
       },
       {
@@ -212,7 +212,7 @@ export const constantRoutes = [
         component: () => import('@/views/after-sales/abnormal'),
         name: 'Abnormal',
         meta: {
-          title: '物流异常订单'
+          title: '物流异常订单', icon: 'el-icon-warning'
         }
       }
     ]
@@ -305,13 +305,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/goods/goods-manage',
     name: 'Goods',
-    meta: { title: '商品管理', icon: 'shopping' },
+    meta: { title: '商品管理', icon: 'el-icon-goods' },
     children: [
       {
         path: 'goods-manage',
         component: () => import('@/views/goods/goods-manage'),
         name: 'GoodsManage',
-        meta: { title: '基础商品', icon: 'clipboard' }
+        meta: { title: '基础商品', icon: 'el-icon-shopping-bag-1' }
       },
       {
         path: 'combined-goods-manage',
@@ -323,7 +323,7 @@ export const constantRoutes = [
         path: 'goods-stock-apply',
         component: () => import('@/views/goods/goods-stock-apply'),
         name: 'GoodsStockApply',
-        meta: { title: '备货记录', icon: 'time' }
+        meta: { title: '备货记录', icon: 'el-icon-notebook-2' }
       }
     ]
   },
@@ -358,12 +358,6 @@ export const constantRoutes = [
         component: () => import('@/views/sys/edit-info'),
         name: 'EditInfo',
         meta: { title: '个人信息', icon: 'el-icon-user-solid' }
-      },
-      {
-        path: 'export-file',
-        component: () => import('@/views/sys/export-file'),
-        name: 'ExportFile',
-        meta: { title: '数据下载', icon: 'el-icon-download' }
       },
       {
         path: 'sys-log',
