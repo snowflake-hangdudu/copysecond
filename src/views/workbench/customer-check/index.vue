@@ -1,5 +1,5 @@
 <template>
-  <div class="container1">
+  <div class="container">
     <el-input v-model="searchInfo.searchName" placeholder="请输入客户名称" @input="getData">
       <template slot="prepend">客户名称</template>
     </el-input>
@@ -212,7 +212,7 @@ export default {
    .el-input , .el-select{
     width: 200px;
    }
-   .container1{
+   .container{
     margin:15px ;
    }
 </style>
