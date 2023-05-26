@@ -7,9 +7,9 @@
       width="25%"
       :before-close="handleClose"
     >
-      部门名称 <el-input v-model="name" placeholder="请输入内容" />
+      部门名称 <el-input v-model="deptName" placeholder="请输入内容" />
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">提交</el-button>
+        <el-button type="primary" @click="postDept">提交</el-button>
       </span>
     </el-dialog>
     <el-input v-model="searchInfo.searchName" placeholder="搜索部门名称" clearable @input="getData">
@@ -51,7 +51,7 @@ export default {
         total: 0
       },
       dialogVisible: false,
-      name: ''
+      deptName: ''
     }
   },
   mounted() {
@@ -76,6 +76,9 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+    postDept() {
+      this.dialogVisible = false
     },
     showDialog() {
       this.dialogVisible = true
