@@ -1,8 +1,5 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text"> {{ name }}</div>
-    <div class="dashboard-text"> {{ nickName }}</div>
-  </div>
+  <div class="dashboard-container" /></div>
 </template>
 
 <script>
@@ -11,12 +8,42 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      name: 'hangdudu',
-      nickName: '如果云知道'
+      tableData: []
     }
   },
-  computed: {
+  mounted() {
+    this.reconstructionStuData(this.tableStudentData)
+  },
+  methods: {
+    reconstructionStuCell({ row, column, rowIndex, columnIndex }) {
 
+    },
+    reconstructionStuData(data) {
+      if (!Array.isArray(data)) return []
+
+      const resData = []
+
+      data.forEach((item, i) => {
+        if (Array.isArray(item.subject) && item.subject.length > 0) {
+          item.subject.forEach((sub, j) => {
+            let subData = {}
+            if (j === 0) {
+              subData = Object.assign({}, item, sub)
+            } else {
+              subData = Object.assign({ }, sub)
+            }
+            resData.push(subData)
+            console.log(resData)
+          })
+        } else {
+          resData.push(
+            Object.assign({ }, item)
+          )
+        }
+      })
+      this.tableData = resData
+      console.log(resData)
+    }
   }
 }
 </script>

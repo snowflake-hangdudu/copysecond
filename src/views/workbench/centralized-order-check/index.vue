@@ -24,6 +24,7 @@
         :default-time="['00:00:00', '23:59:59']"
         @change="getData"
       />
+<<<<<<< HEAD
       <el-table :data="tableData">
         <el-table-column prop="id" label="ID" align="center" header-align="center" width="180" />
         <el-table-column prop="userName" label="发起人" align="center" header-align="center" width="180" />
@@ -33,6 +34,17 @@
             <el-table :data="row.orderCentralizedGoodsListRes" show-header="false" :cell-style="{'padding': '0px'}" size="mini">
               <el-table-column prop="goodsName" label="商品名称" />
             </el-table>
+=======
+      <el-table :data="tableData" header-row-class-name="table-header">
+        <el-table-column prop="id" label="ID" align="center" header-align="center" width="180" />
+        <el-table-column prop="userName" label="发起人" align="center" header-align="center" width="180" />
+        <el-table-column prop="customerName" label="客户名称" align="center" header-align="center" width="180" />
+        <el-table-column prop="orderCentralizedGoodsListRes" label="商品名称" align="center" header-align="center" width="180">
+          <template slot-scope="{ row }">
+            <div v-for="(goods, index) in row.orderCentralizedGoodsListRes" :key="index">
+              {{ goods.goodsName }}
+            </div>
+>>>>>>> f6a4d072417572abd73d3415fc1bcb357c065cf1
           </template>
         </el-table-column>
         <el-table-column prop="buyNum" label="数量" align="center" header-align="center" width="180" />
@@ -42,7 +54,10 @@
         <el-table-column prop="orderCentralizeState" label="状态" align="center" header-align="center" width="180" />
         <el-table-column prop="createdAt" label="创建时间" align="center" header-align="center" width="180" />
       </el-table>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f6a4d072417572abd73d3415fc1bcb357c065cf1
       <el-pagination
         background
         layout="total, sizes, prev, pager, next, jumper"
