@@ -24,6 +24,34 @@
         :default-time="['00:00:00', '23:59:59']"
         @change="getData"
       />
+      <el-table :data="tableData" header-row-class-name="table-header">
+        <el-table-column prop="id" label="ID" align="center" header-align="center" width="180" />
+        <el-table-column prop="userName" label="发起人" align="center" header-align="center" width="180" />
+        <el-table-column prop="customerName" label="客户名称" align="center" header-align="center" width="180" />
+        <el-table-column prop="orderCentralizedGoodsListRes" label="商品名称" align="center" header-align="center" width="180">
+          <template slot-scope="{ row }">
+            <div v-for="(goods, index) in row.orderCentralizedGoodsListRes" :key="index">
+              {{ goods.goodsName }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="buyNum" label="数量" align="center" header-align="center" width="180" />
+        <el-table-column prop="centralizedPrice" label="集采单价" align="center" header-align="center" width="180" />
+        <el-table-column prop="expressFee" label="运费" align="center" header-align="center" width="180" />
+        <el-table-column prop="orderCentralizedRemark" label="备注" align="center" header-align="center" width="180" />
+        <el-table-column prop="orderCentralizeState" label="状态" align="center" header-align="center" width="180" />
+        <el-table-column prop="createdAt" label="创建时间" align="center" header-align="center" width="180" />
+      </el-table>
+      <el-pagination
+        background
+        layout="total, sizes, prev, pager, next, jumper"
+        :page-sizes="[5, 10, 20, 50]"
+        :current-page.sync="pagination.currentPage"
+        :page-size="pagination.pageSize"
+        :total="pagination.total"
+        @size-change="handleSizeChange"
+        @current-change="handlePageChange"
+      />
     </div>
   </div></template>
 
@@ -57,7 +85,7 @@ export default {
   methods: {
     async getData() {
       try {
-        const res = await axios.get('/api/admin/review/purchase/list', {
+        const res = await axios.get('/api/admin/review/order/centralized/list', {
           params: {
             pageNum: this.pagination.currentPage,
             pageSize: this.pagination.pageSize,
