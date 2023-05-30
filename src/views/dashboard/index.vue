@@ -1,29 +1,9 @@
 <template>
   <div class="dashboard-container">
-    <el-table
-      :data="tableData"
-      border
-      header-align="center"
-    >
-      <el-table-column
-        label="名称"
-        prop="name"
-        align="center"
-        width="180"
-      />
-      <el-table-column
-        label="性别"
-        prop="sex"
-        align="center"
-        width="180"
-      />
-      <el-table-column
-        label="年龄"
-        prop="age"
-        align="center"
-        width="180"
-      />
-    </el-table>
+    <!-- <el-table :data="[{'name': 'hangdudu', 'interest': ['reading', 'swimming']}]" :column-widths="[null, '100px']">
+      <el-table-column prop="name" label="姓名" />
+      <el-table-column prop="interest" label="兴趣" />
+    </el-table> -->
   </div>
 </template>
 
@@ -33,45 +13,45 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      tableData: [
-        { name: 'hangdudu', gender: [{ age: 22, sex: 'man' }] },
-        { name: 'hangdudu1', gender: [{ age: 32, sex: 'woman' }] }
-      ]
+      // tableData: [
+      //   { firstname: 'hangdudu', hobby: [{ name: 'boobs' }] },
+      //   { firstname: 'hangdudu', hobby: [{ name: 'wine' }] },
+      //   { firstname: 'shuangshuang', hobby: [{ name: 'boobs' }] }
+      // ]
     }
   },
   mounted() {
-    this.reconstructionStuData(this.tableStudentData)
+    this.reconstructionData(this.tableData)
   },
   methods: {
-    reconstructionStuCell({ row, column, rowIndex, columnIndex }) {
+    // 合并单元格数据
+    // reconstructionStuCell({ row, column, rowIndex, columnIndex }) {
 
-    },
-    reconstructionStuData(data) {
-      if (!Array.isArray(data)) return []
+    // }
+    //  // 进行数据处理
+    //   reconstructionData(data) {
+    //     // 如果为空数组，则返回空数组
+    //     if (!Array.isArray(data)) return []
 
-      const resData = []
+    //     // 定义一个空数组，处理后的数组
+    //     const resData = []
 
-      data.forEach((item, i) => {
-        if (Array.isArray(item.subject) && item.subject.length > 0) {
-          item.subject.forEach((sub, j) => {
-            let subData = {}
-            if (j === 0) {
-              subData = Object.assign({}, item, sub)
-            } else {
-              subData = Object.assign({ }, sub)
-            }
-            resData.push(subData)
-            console.log(resData)
-          })
-        } else {
-          resData.push(
-            Object.assign({ }, item)
-          )
-        }
-      })
-      this.tableData = resData
-      console.log(resData)
-    }
+  //     data.forEach((item) => {
+  //       if (Array.isArray(item.hobby) && item.hobby.length > 0) {
+  //         item.hobby.forEach((item2, index2) => {
+  //           // 定义一个空对象
+  //           let resObj = {}
+  //            if (index2 <= item.hobby.length) {
+  //             resObj = Object.assign({}, item, item2)
+  //             resData.push(resObj)
+  //             console.log(resObj)
+  //           }
+  //         })
+  //       }
+  //     })
+  //     console.log(resData)
+  //     this.tableData = resData
+  //   }
   }
 }
 </script>
@@ -86,4 +66,5 @@ export default {
     line-height: 46px;
   }
 }
+
 </style>

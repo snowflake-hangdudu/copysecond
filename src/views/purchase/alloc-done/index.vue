@@ -42,14 +42,17 @@
       style="width: 100%"
     >
       <el-table-column label="ID" prop="id" width="180" align="center" header-align="center" />
-      <el-table-column label="发起人" prop="userName" width="180" align="center" header-align="center" />
-      <el-table-column label="客户名称" prop="customerName" width="180" align="center" header-align="center" />
+      <el-table-column label="发货号" prop="expressResList" width="180" align="center" header-align="center" />
+      <el-table-column label="所属销售" prop="saleUserName" width="180" align="center" header-align="center" />
       <el-table-column label="商品名称" prop="goodsName" width="180" align="center" header-align="center" />
-      <el-table-column label="商品系统价" prop="dropShippingPrice" width="180" align="center" header-align="center" />
-      <el-table-column label="商品报价" prop="priceSheet" width="180" align="center" header-align="center" />
-      <el-table-column label="备注" prop="remark" width="180" align="center" header-align="center" />
-      <el-table-column label="状态" prop="state" width="180" align="center" header-align="center" />
-      <el-table-column label="报价时间" prop="updatedAt" width="180" align="center" header-align="center" />
+      <el-table-column label="数量" prop="buyNum" width="180" align="center" header-align="center" />
+      <el-table-column label="收件人信息" prop="priceSheet" width="180" align="center" header-align="center" />
+      <el-table-column label="收件地址" prop="consigneeAddress" width="180" align="center" header-align="center" />
+      <el-table-column label="订单状态" prop="state" width="180" align="center" header-align="center" />
+      <el-table-column label="仓库类型" prop="state" width="180" align="center" header-align="center" />
+      <el-table-column label="分配方式" prop="state" width="180" align="center" header-align="center" />
+      <el-table-column label="备注" prop="state" width="180" align="center" header-align="center" />
+      <el-table-column label="创建时间" prop="state" width="180" align="center" header-align="center" />
     </el-table>
     <el-pagination
       background

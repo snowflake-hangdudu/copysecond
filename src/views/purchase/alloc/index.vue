@@ -161,7 +161,8 @@ export default {
             state: this.searchInfo.searchState,
             goodsName: this.searchInfo.searchGoodsName,
             startTime: this.time ? this.time[0] : '',
-            endTime: this.time ? this.time[1] : ''
+            endTime: this.time ? this.time[1] : '',
+            orderStates: 2
           },
           headers: {
             Authorization: this.$globalToken.value
