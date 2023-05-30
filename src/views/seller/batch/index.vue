@@ -98,7 +98,7 @@ export default {
   methods: {
     async getData() {
       try {
-        const res = await axios.get('/api/admin/review/customer/price/list', {
+        const res = await axios.get('/api/admin/order/batch/list', {
           params: {
             pageNum: this.pagination.currentPage,
             pageSize: this.pagination.pageSize,

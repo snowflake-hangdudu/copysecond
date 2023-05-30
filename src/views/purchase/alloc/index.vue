@@ -1,5 +1,5 @@
 
-  <template>
+<template>
   <div class="container">
     <el-input v-model="searchInfo.searchCustomerName" placeholder="请输入客户名称" @input="getData">
       <template slot="prepend">客户名称</template>
@@ -39,17 +39,69 @@
     />
     <el-table
       :data="tableData"
-      style="width: 100%"
+      border
+      header-align="center"
     >
-      <el-table-column label="ID" prop="id" width="180" align="center" header-align="center" />
-      <el-table-column label="发起人" prop="userName" width="180" align="center" header-align="center" />
-      <el-table-column label="客户名称" prop="customerName" width="180" align="center" header-align="center" />
-      <el-table-column label="商品名称" prop="goodsName" width="180" align="center" header-align="center" />
-      <el-table-column label="商品系统价" prop="dropShippingPrice" width="180" align="center" header-align="center" />
-      <el-table-column label="商品报价" prop="priceSheet" width="180" align="center" header-align="center" />
-      <el-table-column label="备注" prop="remark" width="180" align="center" header-align="center" />
-      <el-table-column label="状态" prop="state" width="180" align="center" header-align="center" />
-      <el-table-column label="报价时间" prop="updatedAt" width="180" align="center" header-align="center" />
+      <el-table-column
+        label="ID"
+        prop="id"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="批次号"
+        prop="orderBatchId"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="商品名称"
+        prop="goodsName"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="数量"
+        prop="buyNum"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="收件人信息"
+        prop="consignee"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="收件地址"
+        prop="consigneeAddress"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="额外运费"
+        prop="extraExpressFee"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="仓库"
+        prop="warehouseName"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="备注"
+        prop="orderRemark"
+        align="center"
+        width="180"
+      />
+      <el-table-column
+        label="创建时间"
+        prop="createdAt"
+        align="center"
+        width="180"
+      />
     </el-table>
     <el-pagination
       background
@@ -100,7 +152,7 @@ export default {
   methods: {
     async getData() {
       try {
-        const res = await axios.get('/api/admin/review/customer/price/list', {
+        const res = await axios.get('/api/admin/order/list', {
           params: {
             pageNum: this.pagination.currentPage,
             pageSize: this.pagination.pageSize,

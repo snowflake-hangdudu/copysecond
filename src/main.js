@@ -37,7 +37,7 @@ Vue.config.productionTip = false
 
 // 暂时玩不明白的token，而且还用的是外部的token，更新时换一下value的值就好
 Vue.prototype.$globalToken = {
-  value: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjE2OCwiY3JlYXRlZCI6MTY4NDYxMjgwMzUzOSwiZXhwIjoxNjg1MjE3NjAzfQ.9bevbDj7x9q0DojaOu5TEeCE1C_7rpf0pLmpmuOVMAeIU7E54n_ihGOk7bCN5IMc93bmQ09hFwQrMI019I03GA'
+  value: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjE2OCwiY3JlYXRlZCI6MTY4NTIxNzk4NzgzNiwiZXhwIjoxNjg1ODIyNzg3fQ.tpfzW3VA48Ej84pMfsV7muwVXOLdh2Wmt_Rtso-DAkVu5zLHn_oXYlISwfeoJCyjxIouYytTlpok54A98JgpyA'
 }
 
 new Vue({
