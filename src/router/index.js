@@ -372,13 +372,25 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/debug/unknown',
     name: 'Debug',
-    meta: { title: '调试功能', icon: 'bug' },
+    meta: { title: '调试功能', icon: 'el-icon-s-tools' },
     children: [
       {
         path: 'unknown',
         component: () => import('@/views/debug/unknown'),
         name: 'Unknown',
         meta: { title: '暂时不知道干嘛', icon: 'link' }
+      },
+      {
+        path: 'html',
+        component: () => import('@/views/debug/html'),
+        name: 'Html',
+        meta: { title: 'html', icon: 'link' }
+      },
+      {
+        path: 'css',
+        component: () => import('@/views/debug/css'),
+        name: 'Css',
+        meta: { title: 'css', icon: 'link' }
       }
     ]
   },
