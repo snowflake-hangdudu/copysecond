@@ -19,22 +19,27 @@ export default {
     background-color: aqua;
     width: 100px;
     height: 100px;
-    float: left;
+    box-sizing: border-box;
   }
   .b{
     background-color: yellow;
     width: 100px;
     height: 100px;
-     float: left;
+    box-sizing: border-box;
+
   }
   .c{
-    background-color: yellow;
+    background-color: red;
     width: 100px;
     height: 100px;
-     float: left;
+    box-sizing: border-box;
   }
-  .container{
-    height: 100%;
+  .con{
+    height: 600px;
+    width:600px;
     background-color:pink ;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
   }
 </style>
