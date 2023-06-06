@@ -391,10 +391,15 @@ export const constantRoutes = [
         component: () => import('@/views/debug/css'),
         name: 'Css',
         meta: { title: 'css', icon: 'link' }
+      },
+      {
+        path: 'vue',
+        component: () => import('@/views/debug/vue'),
+        name: 'Vue',
+        meta: { title: 'vue', icon: 'link' }
       }
     ]
   },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
