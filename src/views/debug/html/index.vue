@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="con">
-      <div class="a">a</div>
-      <div class="b">b</div>
-      <div class="c">c</div>
+      <div class="inner">a</div>
+      <div class="inner">a</div>
+      <div class="inner">a</div>
     </div>
   </div>
 </template>
@@ -15,31 +15,27 @@ export default {
 </script>
 
 <style >
-  .a{
-    background-color: aqua;
-    width: 100px;
-    height: 100px;
-    box-sizing: border-box;
-  }
-  .b{
-    background-color: yellow;
-    width: 100px;
-    height: 100px;
-    box-sizing: border-box;
-
-  }
-  .c{
-    background-color: red;
-    width: 100px;
-    height: 100px;
-    box-sizing: border-box;
-  }
+.inner{
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+  border: 1px solid;
+  flex-shrink: 1;
+}
   .con{
-    height: 600px;
-    width:600px;
+    height: 400px;
+    width:1000px;
     background-color:pink ;
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content:flex-start;
     margin: 0 auto;
   }
+  /* .container{
+    width:100%;
+    height: 100%;
+    background-color: aquamarine;
+    display: flex;
+    flex-flow:row wrap;
+  } */
 </style>
